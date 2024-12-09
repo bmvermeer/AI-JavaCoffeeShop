@@ -45,6 +45,8 @@ public class UploadController {
             return null;
         }
 
+        //tralalalala
+
         var user = principal.getName();
         var person = personService.findByUsername(user);
         return person;

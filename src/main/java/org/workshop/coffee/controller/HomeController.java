@@ -38,6 +38,15 @@ public class HomeController {
 
     @PostMapping("/")
     public String searchProducts(Model model, @RequestParam String input) {
+        // search product by name or description
+        var lowerInput = input.toLowerCase(Locale.ROOT);
+        String query = "SELECT * FROM Product WHERE lower(description) LIKE '%" + lowerInput + "%' OR lower(product_name) LIKE '%" + lowerInput + "%'";
+        List<Product> resultList = em.createNativeQuery(query, Product.class).getResultList();
+        if (resultList.isEmpty()) {
+            model.addAttribute("message", "No products found for: " + input);
+        } else {
+            model.addAttribute("products", resultList);
+        }
         return "index";
     }
 }

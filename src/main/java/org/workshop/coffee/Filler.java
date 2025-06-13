@@ -109,6 +109,15 @@ public class Filler {
         storeProduct(product);
     }
 
+    public void createBeer(String name, String style,double price) {
+        var product = new Product(name,
+                style,
+                price,
+                ProductType.BEER
+        );
+        storeProduct(product);
+    }
+
     public void createBeers(int amount) {
         for (int i = 0; i < amount; i++) {
             createBeer();

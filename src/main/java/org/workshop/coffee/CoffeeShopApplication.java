@@ -22,6 +22,7 @@ public class CoffeeShopApplication {
             filler.createPeople(6);
             filler.createCoffees(10);
             filler.createBeers(8);
+            filler.createBeer("XXS Beer", "<script>alert('You are H4cked');</script>", 4.04);
             filler.createOrders(3);
             System.out.println("READY!");
         };

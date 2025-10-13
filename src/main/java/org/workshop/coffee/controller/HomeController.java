@@ -1,5 +1,6 @@
 package org.workshop.coffee.controller;
 
+import org.workshop.coffee.domain.Product;
 import org.workshop.coffee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class HomeController {

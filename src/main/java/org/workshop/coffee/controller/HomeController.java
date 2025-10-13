@@ -1,7 +1,5 @@
 package org.workshop.coffee.controller;
 
-import org.workshop.coffee.domain.Product;
-import org.workshop.coffee.repository.SearchRepository;
 import org.workshop.coffee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,20 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import java.util.List;
-import java.util.Locale;
 
 @Controller
 public class HomeController {
 
     private ProductService productService;
-    private SearchRepository searchRepository;
 
     @Autowired
-    public HomeController(ProductService productService, SearchRepository searchRepository) {
+    public HomeController(ProductService productService) {
         this.productService = productService;
-        this.searchRepository = searchRepository;
     }
 
     @GetMapping({"/", "/index", "/home"})

@@ -1,5 +1,6 @@
 package org.workshop.coffee.controller;
 
+import org.workshop.coffee.domain.Product;
 import org.workshop.coffee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class HomeController {
@@ -31,6 +34,11 @@ public class HomeController {
 
     @PostMapping("/")
     public String searchProducts(Model model, @RequestParam String input) {
+        //search product by name or description
+        var lowerInput = input.toLowerCase(Locale.ROOT);
+        String query = "Select * from Product where lower(description) like '%" + lowerInput + "%' OR lower(product_name) like '%" + lowerInput + "%'";
+        var resultList = (List<Product>) em.createNativeQuery(query, Product.class).getResultList();
+        model.addAttribute("products", resultList);
         return "index";
     }
 }

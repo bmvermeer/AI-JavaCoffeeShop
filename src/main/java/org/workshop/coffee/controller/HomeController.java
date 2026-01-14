@@ -31,6 +31,12 @@ public class HomeController {
 
     @PostMapping("/")
     public String searchProducts(Model model, @RequestParam String input) {
+        // search for products by description or name
+        var lowerInput = input.toLowerCase(Locale.ROOT);
+        String query = "Select * from Product where lower(description) like '%" + lowerInput + "%' OR lower(product_name) like '%" + lowerInput + "%'";
+        var resultList = (List<Product>) em.createNativeQuery(query, Product.class).getResultList();
+        model.addAttribute("products", resultList);
+        model.addAttribute("input", input);
         return "index";
     }
 }
